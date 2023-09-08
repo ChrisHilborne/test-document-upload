@@ -50,7 +50,7 @@ public interface DocApi {
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/doc/list",
+        value = "/list",
         produces = { "application/json" }
     )
     default ResponseEntity<Void> docListGet(
@@ -84,7 +84,7 @@ public interface DocApi {
     )
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/doc/upload",
+        value = "/upload",
         produces = { "application/json" },
         consumes = { "multipart/form-data" }
     )
