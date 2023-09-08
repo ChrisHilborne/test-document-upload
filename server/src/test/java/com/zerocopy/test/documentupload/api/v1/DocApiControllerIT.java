@@ -3,6 +3,7 @@ package com.zerocopy.test.documentupload.api.v1;
 import com.zerocopy.test.documentupload.persistance.entity.DocumentEntity;
 import com.zerocopy.test.documentupload.persistance.repository.DocumentRepository;
 import io.restassured.RestAssured;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,6 +72,28 @@ class DocApiControllerIT {
         DocumentEntity saved = repository.findAll().get(0);
         assertEquals("valid_test.pdf", saved.getName());
         assertEquals(Integer.valueOf(1), saved.getPages());
+
+    }
+
+    @Test
+    void uploadDocumentShouldReturn400WithErrorMessageWhenDocumentIsNotPdf() throws IOException {
+        // given
+        File toUpload = new File(getClass().getClassLoader().getResource("invalid_test.doc").getFile());
+
+        // when
+        RestAssured.given()
+                .multiPart("file", toUpload, "multipart/form-data")
+                .when()
+                .post(BASE_PATH + "upload")
+                .then()
+                .assertThat()
+                .statusCode(400)
+                .and()
+                .body("timestamp", Matchers.notNullValue())
+                .and()
+                .body("code", Matchers.equalTo(400))
+                .and()
+                .body("message", Matchers.containsString("wrong file format"));
 
     }
 }
