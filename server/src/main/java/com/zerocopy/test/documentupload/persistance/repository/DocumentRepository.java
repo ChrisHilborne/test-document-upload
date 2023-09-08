@@ -1,6 +1,6 @@
-package com.zerocopy.test.documentupload.persistance;
+package com.zerocopy.test.documentupload.persistance.repository;
 
-import com.zerocopy.test.documentupload.domain.DocumentEntity;
+import com.zerocopy.test.documentupload.persistance.entity.DocumentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

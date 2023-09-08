@@ -1,4 +1,4 @@
-package com.zerocopy.test.documentupload.domain;
+package com.zerocopy.test.documentupload.persistance.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +18,7 @@ public class DocumentEntity {
     private Long id;
 
     @Column(name = "NAME", nullable = false, columnDefinition = "VARCHAR (500)")
-    private String string;
+    private String name;
 
     @Column(name = "PAGES", nullable = false, columnDefinition = "NUMERIC")
     private Integer pages;
