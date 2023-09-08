@@ -64,10 +64,10 @@ public interface DocApi {
     /**
      * POST /doc/upload : Upload a PDF document
      *
-     * @param file  (optional)
+     * @param file (optional)
      * @return Document uploaded successfully (status code 201)
-     *         or Bad request. Invalid file format. (status code 400)
-     *         or Internal server error. Failed to upload. (status code 500)
+     * or Bad request. Invalid file format. (status code 400)
+     * or Internal server error. Failed to upload. (status code 500)
      */
     @Operation(
         operationId = "docUploadPost",
@@ -88,7 +88,7 @@ public interface DocApi {
         produces = { "application/json" },
         consumes = { "multipart/form-data" }
     )
-    default ResponseEntity<Void> docUploadPost(
+    default ResponseEntity<?> docUploadPost(
         @Parameter(name = "file", description = "") @RequestPart(value = "file", required = false) MultipartFile file
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);

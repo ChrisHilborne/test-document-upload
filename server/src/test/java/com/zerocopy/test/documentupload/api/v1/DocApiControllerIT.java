@@ -44,7 +44,7 @@ class DocApiControllerIT {
     @Test
     void uploadReturns201WhenDocumentIsValidPdf() throws IOException {
         // given
-        File toUpload = new File(getClass().getClassLoader().getResource("dummy.pdf").getFile());
+        File toUpload = new File(getClass().getClassLoader().getResource("valid_test.pdf").getFile());
 
         // then
         RestAssured.given()
@@ -59,7 +59,7 @@ class DocApiControllerIT {
     @Test
     void uploadDocumentSavesDocumentInDbWhenDocumentIsValidPdf() throws IOException {
         // given
-        File toUpload = new File(getClass().getClassLoader().getResource("dummy.pdf").getFile());
+        File toUpload = new File(getClass().getClassLoader().getResource("valid_test.pdf").getFile());
 
         // when
         RestAssured.given()
@@ -69,13 +69,8 @@ class DocApiControllerIT {
 
         // then
         DocumentEntity saved = repository.findAll().get(0);
-        assertEquals("dummy.pdf", saved.getName());
+        assertEquals("valid_test.pdf", saved.getName());
         assertEquals(Integer.valueOf(1), saved.getPages());
 
     }
-
-    @Test
-    void docListGet() {
-    }
-
 }
