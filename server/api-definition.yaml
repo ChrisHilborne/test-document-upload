@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Document Management API
+  version: 1.0.0
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        name:
+          type: string
+        pages:
+          type: integer
+    Error:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        message:
+          type: string
+        code:
+          type: integer
+paths:
+  /doc/upload:
+    post:
+      summary: Upload a PDF document
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Document uploaded successfully
+        '400':
+          description: Bad request. Invalid file format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error. Failed to upload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /doc/list:
+    get:
+      summary: List all uploaded documents and their page counts
+      responses:
+        '200':
+          description: List of documents and page counts
+          content:
+            application/json:
+              example:
+                documents:
+                  - name: document1.pdf
+                    pages: 10
+                  - name: document2.pdf
+                    pages: 15
+        '500':
+          description: Internal server error. Failed to retrieve document list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
