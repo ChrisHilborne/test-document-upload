@@ -14,12 +14,21 @@ import java.time.LocalDateTime;
 public class ExceptionController {
 
     private static final Integer FILE_FORMAT_EXP_CODE = 400;
+    private static final Integer GENERIC_EXP_CODE = 500;
 
     @ExceptionHandler(FileFormatException.class)
     public ResponseEntity<ErrorDto> handleFileFormatException(FileFormatException exception) {
-       log.debug("FileFormatException thrown");
+       log.warn("FileFormatException thrown:{}", exception);
         return ResponseEntity
                 .status(FILE_FORMAT_EXP_CODE)
                 .body(new ErrorDto(LocalDateTime.now(), exception.getMessage(), FILE_FORMAT_EXP_CODE));
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDto> handleGenericException(Exception exception) {
+        log.warn("Exception thrown: {}", exception);
+        return ResponseEntity
+                .status(GENERIC_EXP_CODE)
+                .body(new ErrorDto(LocalDateTime.now(), exception.getMessage(), GENERIC_EXP_CODE));
     }
 }

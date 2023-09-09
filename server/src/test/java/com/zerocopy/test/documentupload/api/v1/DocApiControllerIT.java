@@ -98,4 +98,26 @@ class DocApiControllerIT {
         assertTrue(errorDto.exceptionMessage().contains("Wrong file format"));
         assertEquals(400, errorDto.statusCode());
     }
+
+    @Test
+    void uploadDocumentShouldReturn500WithErrorMessageWhenDocumentCorrupt() throws IOException {
+        // given
+        File toUpload = new File(getClass().getClassLoader().getResource("corrupt_test.pdf").getFile());
+
+        // when
+        Response response = RestAssured.given()
+                .multiPart("file", toUpload, "multipart/form-data")
+                .when()
+                .post(BASE_PATH + "upload")
+                .then()
+                .assertThat()
+                .statusCode(500)
+                .extract().response();
+
+        // then
+        ErrorDto errorDto = response.body().as(ErrorDto.class);
+        assertNotNull(errorDto.timeStamp());
+        assertNotNull(errorDto.exceptionMessage());
+        assertEquals(500, errorDto.statusCode());
+    }
 }
