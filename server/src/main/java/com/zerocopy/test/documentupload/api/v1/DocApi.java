@@ -5,6 +5,7 @@
  */
 package com.zerocopy.test.documentupload.api.v1;
 
+import com.zerocopy.test.documentupload.api.v1.dto.DocumentDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Generated;
+import java.util.List;
 import java.util.Optional;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-08T22:23:18.985393663+02:00[Europe/Madrid]")
@@ -29,14 +31,14 @@ public interface DocApi {
      * GET /doc/list : List all uploaded documents and their page counts
      *
      * @return List of documents and page counts (status code 200)
-     *         or Internal server error. Failed to retrieve document list. (status code 500)
+     * or Internal server error. Failed to retrieve document list. (status code 500)
      */
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/list",
         produces = { "application/json" }
     )
-    default ResponseEntity<Void> docListGet(
+    default ResponseEntity<List<DocumentDto>> docListGet(
         
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);

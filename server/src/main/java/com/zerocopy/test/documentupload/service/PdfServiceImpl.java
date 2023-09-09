@@ -1,18 +1,17 @@
 package com.zerocopy.test.documentupload.service;
 
+import com.zerocopy.test.documentupload.api.v1.dto.DocumentDto;
 import com.zerocopy.test.documentupload.exception.FileFormatException;
-import com.zerocopy.test.documentupload.exception.FileReadException;
 import com.zerocopy.test.documentupload.persistance.entity.DocumentEntity;
 import com.zerocopy.test.documentupload.domain.DocumentProcessor;
 import com.zerocopy.test.documentupload.persistance.repository.DocumentRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -35,6 +34,14 @@ public class PdfServiceImpl implements PdfService {
         DocumentEntity toSave = processor.processDocument(pdf);
         DocumentEntity saved = repository.save(toSave);
         log.debug("File saved: {}", saved);
+    }
+
+    @Override
+    public List<DocumentDto> getAll() {
+        return repository.findAll(Sort.by("name"))
+                .stream()
+                .map(doc -> new DocumentDto(doc.getName(), doc.getPages()))
+                .toList();
     }
 
     protected static boolean isPdf(MultipartFile pdf) {
