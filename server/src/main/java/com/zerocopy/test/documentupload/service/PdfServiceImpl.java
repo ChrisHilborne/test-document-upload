@@ -19,7 +19,6 @@ import java.nio.file.Path;
 public class PdfServiceImpl implements PdfService {
 
     private final DocumentRepository repository;
-
     private final DocumentProcessor processor;
 
     public PdfServiceImpl(DocumentRepository repository, DocumentProcessor processor) {
@@ -38,7 +37,7 @@ public class PdfServiceImpl implements PdfService {
         log.debug("File saved: {}", saved);
     }
 
-    private static boolean isPdf(MultipartFile pdf) {
+    protected static boolean isPdf(MultipartFile pdf) {
         String extension = StringUtils.getFilenameExtension(pdf.getOriginalFilename());
         return "pdf".equalsIgnoreCase(extension);
     }
