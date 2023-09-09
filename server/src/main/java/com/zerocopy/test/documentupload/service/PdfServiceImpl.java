@@ -1,5 +1,6 @@
 package com.zerocopy.test.documentupload.service;
 
+import com.zerocopy.test.documentupload.exception.FileFormatException;
 import com.zerocopy.test.documentupload.persistance.entity.DocumentEntity;
 import com.zerocopy.test.documentupload.domain.DocumentProcessor;
 import com.zerocopy.test.documentupload.persistance.repository.DocumentRepository;
@@ -25,6 +26,9 @@ public class PdfServiceImpl implements PdfService {
     @Override
     public void savePdf(MultipartFile pdf) {
         log.debug("Saving file: {}", pdf.getOriginalFilename());
+        if (!"PDF".equals(pdf.getContentType().toUpperCase())) {
+            throw new FileFormatException("pdf");
+        }
         DocumentEntity toSave = processor.processDocument(pdf);
         DocumentEntity saved = repository.save(toSave);
         log.debug("File saved: {}", saved);

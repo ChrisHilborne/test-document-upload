@@ -1,7 +1,10 @@
 package com.zerocopy.test.documentupload.exception;
 
 public class FileFormatException extends RuntimeException {
-    public FileFormatException(String message) {
-        super(message);
+
+    private static final String messageFormat = "Wrong file format, should be %s";
+
+    public FileFormatException(String fileFormat) {
+        super(String.format(messageFormat, fileFormat));
     }
 }

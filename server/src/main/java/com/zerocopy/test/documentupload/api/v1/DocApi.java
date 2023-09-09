@@ -5,12 +5,6 @@
  */
 package com.zerocopy.test.documentupload.api.v1;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -25,7 +19,6 @@ import java.util.Optional;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-08T22:23:18.985393663+02:00[Europe/Madrid]")
 @Validated
-@Tag(name = "doc", description = "the doc API")
 public interface DocApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -38,16 +31,6 @@ public interface DocApi {
      * @return List of documents and page counts (status code 200)
      *         or Internal server error. Failed to retrieve document list. (status code 500)
      */
-    @Operation(
-        operationId = "docListGet",
-        summary = "List all uploaded documents and their page counts",
-        responses = {
-            @ApiResponse(responseCode = "200", description = "List of documents and page counts"),
-            @ApiResponse(responseCode = "500", description = "Internal server error. Failed to retrieve document list.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            })
-        }
-    )
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/list",
@@ -69,19 +52,6 @@ public interface DocApi {
      * or Bad request. Invalid file format. (status code 400)
      * or Internal server error. Failed to upload. (status code 500)
      */
-    @Operation(
-        operationId = "docUploadPost",
-        summary = "Upload a PDF document",
-        responses = {
-            @ApiResponse(responseCode = "201", description = "Document uploaded successfully"),
-            @ApiResponse(responseCode = "400", description = "Bad request. Invalid file format.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            }),
-            @ApiResponse(responseCode = "500", description = "Internal server error. Failed to upload.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            })
-        }
-    )
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/upload",
@@ -89,7 +59,7 @@ public interface DocApi {
         consumes = { "multipart/form-data" }
     )
     default ResponseEntity<?> docUploadPost(
-        @Parameter(name = "file", description = "") @RequestPart(value = "file", required = false) MultipartFile file
+       @RequestPart(value = "file", required = false) MultipartFile file
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 

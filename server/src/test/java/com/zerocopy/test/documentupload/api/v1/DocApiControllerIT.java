@@ -1,8 +1,10 @@
 package com.zerocopy.test.documentupload.api.v1;
 
+import com.zerocopy.test.documentupload.api.v1.dto.ErrorDto;
 import com.zerocopy.test.documentupload.persistance.entity.DocumentEntity;
 import com.zerocopy.test.documentupload.persistance.repository.DocumentRepository;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +20,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(SpringExtension.class)
@@ -81,19 +83,19 @@ class DocApiControllerIT {
         File toUpload = new File(getClass().getClassLoader().getResource("invalid_test.doc").getFile());
 
         // when
-        RestAssured.given()
+        Response response = RestAssured.given()
                 .multiPart("file", toUpload, "multipart/form-data")
                 .when()
                 .post(BASE_PATH + "upload")
                 .then()
                 .assertThat()
                 .statusCode(400)
-                .and()
-                .body("timestamp", Matchers.notNullValue())
-                .and()
-                .body("code", Matchers.equalTo(400))
-                .and()
-                .body("message", Matchers.containsString("wrong file format"));
+                .extract().response();
 
+        // then
+        ErrorDto errorDto = response.body().as(ErrorDto.class);
+        assertNotNull(errorDto.timeStamp());
+        assertTrue(errorDto.exceptionMessage().contains("Wrong file format"));
+        assertEquals(400, errorDto.statusCode());
     }
 }
