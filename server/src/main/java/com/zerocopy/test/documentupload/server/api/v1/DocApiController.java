@@ -1,7 +1,7 @@
 package com.zerocopy.test.documentupload.server.api.v1;
 
 import com.zerocopy.test.api.shared.dto.DocumentDto;
-import com.zerocopy.test.documentupload.server.service.PdfService;
+import com.zerocopy.test.api.shared.service.PdfService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

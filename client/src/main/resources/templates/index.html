@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOC UPLOAD TEST</title>
+    <script th:src="@{static/js/htmx.min.js}"></script>
+</head>
+<body>
+<div id="pdf_upload_div" th:insert="~{fragments/files/upload_form.html :: upload_form}"></div>
+<div id="pdf_list_div" th:insert="~{fragments/files/files_list.html :: list}"></div>
+
+</body>
+</html>

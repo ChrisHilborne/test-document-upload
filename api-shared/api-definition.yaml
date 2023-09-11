@@ -22,7 +22,7 @@ components:
         code:
           type: integer
 paths:
-  /doc/upload:
+  /v1/doc/upload:
     post:
       summary: Upload a PDF document
       requestBody:
@@ -50,7 +50,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /doc/list:
+  /v1/doc/list:
     get:
       summary: List all uploaded documents and their page counts
       responses:

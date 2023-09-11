@@ -1,6 +1,7 @@
 package com.zerocopy.test.documentupload.server.service;
 
 import com.zerocopy.test.api.shared.dto.DocumentDto;
+import com.zerocopy.test.api.shared.service.PdfService;
 import com.zerocopy.test.documentupload.server.exception.FileFormatException;
 import com.zerocopy.test.documentupload.server.persistance.entity.DocumentEntity;
 import com.zerocopy.test.documentupload.server.domain.DocumentProcessor;
