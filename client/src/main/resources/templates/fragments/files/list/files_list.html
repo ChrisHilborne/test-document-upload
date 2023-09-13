@@ -1,7 +1,7 @@
 <div id="pdf_list_div"
      class="container col"
      hx-get="/pdf/list"
-     th:hx-trigger="${index != null ? 'load, done' : 'done'}"
+     th:hx-trigger="${index != null ? 'load, done from:body' : 'done from:body'}"
      hx-swap="outerHTML"
      style="width: 75%;"
      th:fragment="list">
@@ -21,7 +21,6 @@
     </div>
     <div th:if="${error != null}" class="container row">
         <div class="container error-message mb-3"
-             th:text="'Woops! Something went wrong when loading the file list!' + ${errorMessage != null ? ' ' + errorMessage : '.'}">
-        </div>
+             th:text="'Woops! Something went wrong when loading the file list!' + ${errorMessage != null ? ' ' + errorMessage : '.'}"></div>
     </div>
 </div>
