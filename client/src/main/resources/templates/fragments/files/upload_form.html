@@ -1,11 +1,12 @@
 <form id="upload_form"
+      class="form-group"
       th:fragment="upload_form"
       hx-post="/pdf/upload"
       hx-swap="outerHTML"
       hx-encoding="multipart/form-data">
-    <label for="upload_form_input">Select a file:</label>
-    <input id="upload_form_input" type="file" name="file" accept=".pdf, .PDF"/>
-    <br>
-    <button id="upload_form_submit" type="submit">Upload!</button>
+    <div class="input-group mb-3">
+        <input id="upload_form_input" class="form-control form-control-lg" type="file" name="file" accept=".pdf, .PDF"/>
+        <button id="upload_form_submit" class="btn btn-primary" type="submit">Upload!</button>
+    </div>
     <img class="htmx-indicator" src="/images/svg-loaders/oval.svg">
 </form>

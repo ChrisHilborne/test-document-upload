@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>DOC UPLOAD TEST</title>
+    <link rel="stylesheet" th:href="@{/static/css/app.css}">
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css}">
     <script th:src="@{static/js/htmx.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css}"></script>
 </head>
-<body>
-<div id="pdf_upload_div" th:insert="~{fragments/files/upload_form.html :: upload_form}"></div>
-<div id="pdf_list_div" th:insert="~{fragments/files/files_list.html :: list}"></div>
+<body class="d-flex flex-column h-100">
 
+<main class="flex-shrink-0">
+
+    <header class="p-3 bg-dark text-white mb-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center ">
+                <span class="fs-2">File Upload</span>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div id="pdf_upload_div" class="container" style="width: 60%;" th:insert="~{fragments/files/upload_form.html :: upload_form}"></div>
+        <div id="pdf_list_div" class="container d-flex justify-content-center" th:insert="~{fragments/files/files_list.html :: list}"></div>
+    </div>
+</main>
+
+
+<footer class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+</footer>
 </body>
 </html>
