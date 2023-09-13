@@ -1,6 +1,7 @@
 package com.zerocopy.test.api.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 

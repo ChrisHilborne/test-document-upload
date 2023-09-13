@@ -1,4 +1,4 @@
-package com.zerocopy.test.documentupload.server.service;
+package com.zerocopy.test.api.shared.service;
 
 import com.zerocopy.test.api.shared.dto.DocumentDto;
 import org.springframework.web.multipart.MultipartFile;

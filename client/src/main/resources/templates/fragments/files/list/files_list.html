@@ -1,0 +1,26 @@
+<div id="pdf_list_div"
+     class="container col"
+     hx-get="/pdf/list"
+     th:hx-trigger="${index != null ? 'load, done from:body' : 'done from:body'}"
+     hx-swap="outerHTML"
+     style="width: 75%;"
+     th:fragment="list">
+    <div class="container row">
+        <table id="pdf_list_table" class="styled-table mb-3">
+            <thead class="bg-secondary">
+            <tr>
+                <th>File Name</th>
+                <th>Num. Pages</th>
+            </tr>
+            </thead>
+            <tr th:each="file : ${files}">
+                <td th:text="${file.name}"></td>
+                <td th:text="${file.pages}"></td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${error != null}" class="container row">
+        <div class="container error-message mb-3"
+             th:text="'Woops! Something went wrong when loading the file list!' + ${errorMessage != null ? ' ' + errorMessage : '.'}"></div>
+    </div>
+</div>
