@@ -4,10 +4,13 @@ import com.zerocopy.test.api.shared.dto.ErrorDto;
 import lombok.Getter;
 
 @Getter
-public class DocumentApiException extends RuntimeException {
+public class DocumentApiServerException extends RuntimeException {
     private final ErrorDto errorDto;
-    public DocumentApiException(ErrorDto errorDto) {
+    public DocumentApiServerException(ErrorDto errorDto) {
         super(errorDto.exceptionMessage());
         this.errorDto = errorDto;
     }
+
+
 }
+

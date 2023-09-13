@@ -1,0 +1,22 @@
+<form id="upload_form"
+      class="form-group"
+      th:fragment="upload_form"
+      hx-post="/pdf/upload"
+      hx-swap="outerHTML"
+      hx-encoding="multipart/form-data">
+    <div th:if="${error != null}" class="form-text error-message mb-2"
+         th:text="'Something went wrong when uploading the document!' + ${errorMessage != null ? ' ' + errorMessage + '.' : ''} + ' Please try again.'">
+    </div>
+    <div class="input-group mb-3">
+        <input id="upload_form_input" class="form-control form-control-lg" type="file" name="file" accept=".pdf, .PDF"/>
+        <button id="upload_form_submit" class="btn btn-primary" type="submit">Upload!</button>
+    </div>
+    <div class="htmx-indicator progress w-100" style="height: 20px;">
+        <progress id='progress' class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #009879!important"></progress>
+    </div>
+    <script>
+        htmx.on('#upload_form', 'htmx:xhr:progress', function (evt) {
+            htmx.find('#progress').style.width = evt.detail.loaded / evt.detail.total * 100 + '%'
+        });
+    </script>
+</form>

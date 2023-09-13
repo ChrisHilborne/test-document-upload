@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>DOC UPLOAD TEST</title>
-    <link rel="stylesheet" th:href="@{/static/css/app.css}">
-    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css}">
-    <script th:src="@{static/js/htmx.min.js}"></script>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js}"></script>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css}"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/htmx.min.js"></script>
+    <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -21,8 +20,8 @@
         </div>
     </header>
     <div class="container">
-        <div id="pdf_upload_div" class="container" style="width: 60%;" th:insert="~{fragments/files/upload_form.html :: upload_form}"></div>
-        <div id="pdf_list_div" class="container d-flex justify-content-center" th:insert="~{fragments/files/files_list.html :: list}"></div>
+        <div id="pdf_upload_div" class="container" style="width: 60%;" th:insert="~{fragments/files/upload/upload_form.html :: upload_form}"></div>
+        <div th:replace="~{fragments/files/list/files_list.html :: list}"></div>
     </div>
 </main>
 
