@@ -2,6 +2,16 @@
 
 This is my submission for the technical assessment provided by [zerocopy](https://zerocopy.be/), the instructions for which can be found in the original [README.md](/README_original.md).
 
+## Launching the Applications
+
+I have provided a docker-compose.yaml file along with a Dockerfile to make it easy to launch the server-client application. To build and deploy the two docker images simply navigate to the project's root directory and run the following command:
+
+`docker-compose up`
+
+If maven hangs while downloading dependencies please make sure you are not connected to any vpns.
+
+The client will be listening on localhost:8080 and the server on localhost:8081.
+
 My solution consists of three sub-modules.
 1. A shared library 'api-shared' which includes an interface and the Data Transfer Objects (DTOs) which are used to pass data between the different elements of the application. It also includes the Open API 3.0 definition which is exposed by the server and consumed by the client.
 2. The server, built with Spring Boot and Spring Data and exposing a REST API to upload pdf files.
