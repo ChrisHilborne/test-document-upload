@@ -1,23 +1,20 @@
-# Welcome to Zerocopy document-upload test
+# Zerocopy PDF Upload Test
 
-We have organized a sandbox for you to show your skills to deal with real Zerocopy problem.
+This is my submission for the technical assessment provided by [zerocopy](https://zerocopy.be/), the instructions for which can be found in the original [README.md](/README_original.md).
 
-The project is composed by two maven modules, the client and the server:
+My solution consists of three sub-modules.
+1. A shared library 'api-shared' which includes an interface and the Data Transfer Objects (DTOs) which are used to pass data between the different elements of the application. It also includes the Open API 3.0 definition which is exposed by the server and consumed by the client.
+2. The server, built with Spring Boot and Spring Data and exposing a REST API to upload pdf files.
+3. The client, built as a Spring MVC application with Thymeleaf as the template rendering agent and HTMX on the front end.
 
-- The client is where you need to develop the UX for the test. You can develop the UX in any way (ReactJS, Angular, Thymeleaf, ...), you don’t need to worry about maven integration with ReactJS or Angular, if you choose it, focus on create a working UX.
-- The server is where you need to develop the backend API to receive requests from the client. Right now it’s a basic spring-boot application with some useful dependencies to create endpoints and save the data in H2 database.
+## What is HTMX?
 
-The result of this exercise will be the base on which we will perform the technical interview. Try to be clean and give a simple solution to the problem.
+[HTMX](https://htmx.org/) is a light-weight javascript library which is designed to extend the functionality of HTML though the addition of custom HTML attributes. 
 
-## What do you need to do?
+It allows developers to attach HTTP requests to any HTML element, not just forms and anchors. These requests expect to receive HTML fragments as the response body, with which HTMX will then replace any element on the page. It does this without the need to reload the whole page as was previously the case with applications made with Thymeleaf. 
 
-- Create a small UX where a user can upload PDF documents and see the list of uploaded documents.
-- Create two endpoints, one to receive new documents and another to retrieve the existing documents.
+Thus, we can deliver the seamless feeling and responsive UX of single-page application frameworks such as React and Angular without the need to run a large amount of javascript on the client. 
 
-**IMPORTANT NOTES:**
-- Just PDF documents can be uploaded, process will be tested with different type of formats.
-- Just document name and number of pages should be saved.
-- By default, server will be listening at port 8080.
-- You need to provide us the access to the GIT repository with your work, so create it public or be ready to provide access to our developers.
+## Things to improve
 
-If you have any question at anytime, do not hesitate to contact us on this email: developers@zerocopy.be
+If I was to develop this project further the first thing I would look to do would be to include shared exceptions in the shared library to enable easier error handling across different parts of the application, in particular when an error occurs during a request from the client to the server.

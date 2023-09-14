@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOC UPLOAD TEST</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/htmx.min.js"></script>
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body class="d-flex flex-column h-100">
+
+<main class="flex-shrink-0">
+
+    <header class="p-3 bg-dark text-white mb-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center ">
+                <span class="fs-2">File Upload</span>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div id="pdf_upload_div" class="container" style="width: 60%;" th:insert="~{fragments/files/upload/upload_form.html :: upload_form}"></div>
+        <div th:replace="~{fragments/files/list/files_list.html :: list}"></div>
+    </div>
+</main>
+
+
+<footer class="footer mt-auto py-3 bg-dark"></footer>
+</body>
+</html>
