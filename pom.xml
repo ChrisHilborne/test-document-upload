@@ -31,7 +31,6 @@
         </dependencies>
     </dependencyManagement>
 
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,24 +55,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.26</version>
         </dependency>
-        <dependency>
-            <groupId>com.zerocopy.test</groupId>
-            <artifactId>api-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
