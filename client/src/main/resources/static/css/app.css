@@ -2,6 +2,10 @@
     color: darkred!important;
     text-align: center!important;
 }
+.success-message {
+    color: green!important;
+    text-align: center!important;
+}
 .styled-table {
     border-collapse: collapse;
     margin: 25px 0;

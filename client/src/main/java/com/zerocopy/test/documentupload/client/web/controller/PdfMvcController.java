@@ -32,6 +32,7 @@ public class PdfMvcController {
         try {
             service.savePdf(pdf);
             response.addHeader("HX-Trigger", "done");
+            model.addAttribute("success", true);
         } catch (Exception e) {
             log.error("Error uploading document", e);
             loadErrorInfo(model, e);

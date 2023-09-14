@@ -7,6 +7,9 @@
     <div th:if="${error != null}" class="form-text error-message mb-2"
          th:text="'Something went wrong when uploading the document!' + ${errorMessage != null ? ' ' + errorMessage + '.' : ''} + ' Please try again.'">
     </div>
+    <div th:if="${success != null}" class="form-text success-message mb-2">
+        The document was successfully uploaded.
+    </div>
     <div class="input-group mb-3">
         <input id="upload_form_input" class="form-control form-control-lg" type="file" name="file" accept=".pdf, .PDF"/>
         <button id="upload_form_submit" class="btn btn-primary" type="submit">Upload!</button>
